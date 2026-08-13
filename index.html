@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[ newabstract ] | design & dev</title>
+    <link href="https://fonts.cdnfonts.com/css/sulphur-point" rel="stylesheet">
+    <!-- Primary metadata -->
+<meta name="description" content="[ newabstract ] | design & dev">
+
+<!-- Open Graph / iMessage / Facebook / LinkedIn / etc. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://newabstractdesign.vercal.app">
+<meta property="og:title" content="[ newabstract ] | design & dev">
+<meta property="og:description" content="[ newabstract ] | design & dev">
+<meta property="og:image" content="https://newabstractdesign.vercal.app/assets/preview-card.png">
+<meta property="og:image:alt" content="website preview">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="[ newabstract ] | design & dev">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="[ newabstract ] | design & dev">
+<meta name="twitter:description" content="YOUR APP DESCRIPTION HERE">
+<meta name="twitter:image" content="https://newabstractdesign.vercal.app/assets/preview-card.png">
+<meta name="twitter:image:alt" content="website preview">
+
+<!-- Optional: favicon / browser metadata -->
+<link rel="icon" href="/favicon.ico">
+    <style>
+        body {
+            background: black;
+            color: white;
+            font-family: "Sulphur Point", sans-serif;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+
+            overflow: hidden;
+
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><circle cx="12" cy="12" r="10" fill="white" /></svg>') 16 16, auto;
+        }
+
+        button,
+        a {
+            all: unset;
+            cursor: pointer;
+        }
+
+        .container {
+            opacity: 0;
+            animation: fadeIn 4s ease-in forwards;
+        }
+
+        .contact-wrapper {
+            position: relative;
+        }
+
+        .contact-button {
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-menu {
+            position: absolute;
+
+            top: 102.5%;
+            right: -2.5rem;
+
+            width: 290px;
+
+            padding: 7px;
+
+            background: black;
+            color: white;
+            border: 1px solid rgba(0, 0, 0, 0.09);
+            border-radius: 12px;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.08),
+                0 2px 8px rgba(0, 0, 0, 0.04);
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-7px) scale(0.98);
+
+            transform-origin: top right;
+
+            transition:
+                opacity 180ms ease,
+                transform 180ms ease,
+                visibility 180ms ease;
+
+            cursor: pointer;
+        }
+
+
+        .contact-menu::before {
+            content: "";
+
+            position: absolute;
+            top: -5px;
+            right: 22px;
+
+            width: 9px;
+            height: 9px;
+
+            background: black;
+            color: white;
+
+            border-left: 1px solid rgba(0, 0, 0, 0.09);
+            border-top: 1px solid rgba(0, 0, 0, 0.09);
+
+            transform: rotate(45deg);
+        }
+
+        .contact-wrapper:hover .contact-menu,
+        .contact-wrapper:focus-within .contact-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            min-height: 58px;
+
+            padding: 9px 9px 9px 13px;
+
+            border-radius: 8px;
+
+            transition:
+                background 120ms ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 0, 0, 0.045);
+        }
+
+        .contact-info {
+            min-width: 0;
+
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            line-height: 1;
+
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+
+            opacity: 0.42;
+        }
+
+        .contact-value {
+            font-size: 16px;
+            line-height: 1.2;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .contact-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .copy-button {
+            flex: 0 0 auto;
+
+            width: 36px;
+            height: 36px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 6px;
+
+            opacity: 0.35;
+
+            transition:
+                opacity 120ms ease,
+                background 120ms ease,
+                transform 120ms ease;
+
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            opacity: 0.8;
+            background: rgba(0, 0, 0, 0.06);
+        }
+
+        .copy-button:active {
+            transform: scale(0.9);
+        }
+
+        .copy-button svg {
+            width: 22px;
+            height: 22px;
+
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .copy-button.copied {
+            opacity: 1;
+        }
+
+        .copy-button.copied svg {
+            stroke-width: 1.8;
+        }
+
+        .actions-container {
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="container"
+            style="isolation: isolate; position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <header
+                style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); width: 90vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; padding: 0rem 0.5rem;">
+                <div>
+                    <h1 style="font-weight: 800;">[ newabstract ]</h1>
+                </div>
+                <div class="actions-container" style="display: flex; align-items: center; gap: 2.5rem;">
+                    <a href="/examples.html">examples</a>
+                    <a href="/about.html">about</a>
+                    <div class="contact-wrapper">
+                        <button class="contact-button">contact</button>
+                        <div class="contact-menu">
+
+
+                            <div class="contact-item">
+                                <div class="contact-info">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <span class="contact-label" style="width: 4.5rem;">whatsapp</span>
+                                        <svg style="stroke: white; fill: white; width: 24px; height: 24px;"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"
+                                            viewBox="0 0 100 110" style="enable-background:new 0 0 100 100;"
+                                            xml:space="preserve">
+                                            <g>
+                                                <path
+                                                    d="M66.23,55.84l-5.92-4.33c-0.9-0.66-2-0.92-3.1-0.75c-1.1,0.17-2.06,0.76-2.72,1.66l-1.83,2.51   c-0.02,0.03-0.04,0.06-0.06,0.09c-0.28,0.04-1.76,0.07-5.3-2.75l-0.38-0.27c-3.7-2.46-4.12-3.87-4.17-4.16   c0.02-0.03,0.05-0.06,0.07-0.09l1.83-2.51c1.35-1.85,0.95-4.46-0.91-5.82l-6.03-4.4c-1.85-1.36-4.46-0.95-5.82,0.91l-1.85,2.54   c-1.79,2.46-2.26,5.69-1.25,8.64c1.47,4.27,5.16,8.78,11,13.42c0.1,0.12,0.22,0.22,0.35,0.32c0.14,0.1,0.29,0.2,0.43,0.3   c0.14,0.11,0.28,0.21,0.42,0.32c0.13,0.1,0.27,0.18,0.41,0.24c6.2,4.14,11.62,6.29,16.14,6.38c0.06,0,0.13,0,0.19,0   c2.95,0,5.77-1.45,7.55-3.9l1.85-2.54c0.66-0.9,0.92-2,0.75-3.1C67.72,57.46,67.13,56.49,66.23,55.84z M63.91,59.3l-1.85,2.54   c-1.06,1.45-2.76,2.28-4.43,2.25c-2.7-0.06-7.42-1.18-14.68-6.17c-6.97-5.4-9.48-9.55-10.36-12.1c-0.58-1.69-0.32-3.6,0.69-4.98   l1.85-2.54c0.05-0.07,0.15-0.09,0.23-0.04l6.03,4.4c0.07,0.05,0.09,0.16,0.04,0.23l-1.75,2.39c-0.53,0.58-1,1.56-0.92,2.81   c0.16,2.31,2.1,4.68,5.88,7.19l0.23,0.17c3.61,2.88,6.46,4.01,8.71,3.46c1.21-0.3,2-1.05,2.39-1.73l1.75-2.39   c0.05-0.06,0.17-0.08,0.23-0.04l5.93,4.33C63.94,59.11,63.95,59.23,63.91,59.3z" />
+                                                <path
+                                                    d="M48.4,18.01c-18.13,0-32.89,14.75-32.89,32.89c0,7.64,2.65,15,7.48,20.88l-5.55,10.81c-0.37,0.71-0.27,1.57,0.24,2.19   c0.39,0.46,0.95,0.72,1.54,0.72c0.19,0,0.38-0.03,0.57-0.08l15.15-4.5c4.24,1.91,8.76,2.87,13.45,2.87   c18.13,0,32.89-14.75,32.89-32.89S66.53,18.01,48.4,18.01z M48.4,79.78c-4.35,0-8.54-0.94-12.43-2.81   c-0.45-0.21-0.96-0.25-1.43-0.11l-11.39,3.39l4.02-7.84c0.38-0.74,0.26-1.63-0.29-2.25c-4.75-5.3-7.37-12.15-7.37-19.26   c0-15.93,12.96-28.89,28.89-28.89S77.28,34.97,77.28,50.9S64.33,79.78,48.4,79.78z" />
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <span class="contact-value">+1 [240] 751-5698</span>
+                                </div>
+
+                                <button class="copy-button" data-copy="+1 (240) 751-5698"
+                                    aria-label="Copy phone number">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <rect x="8" y="8" width="11" height="11" rx="2"></rect>
+                                        <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-info">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <span class="contact-label" style="width: 4.5rem;">email</span>
+                                        <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5"
+                                            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d='m2.357 7.714 6.98 4.654c.963.641 1.444.962 1.964 1.087.46.11.939.11 1.398 0 .52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327' />
+                                        </svg>
+                                    </div>
+                                    <span class="contact-value">newabstractdesign@gmail.com</span>
+                                </div>
+
+                                <button class="copy-button" data-copy="newabstractdesign@gmail.com"
+                                    aria-label="Copy email address">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <rect x="8" y="8" width="11" height="11" rx="2"></rect>
+                                        <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path>
+                                    </svg>
+                                </button>
+                            </div>
+
+
+                            <div class="contact-item">
+                                <div class="contact-info">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <span class="contact-label" style="width: 4.5rem;">wyzant</span>
+                                        <svg fill="white" stroke="white" width="18px" height="18px" viewBox="0 0 354 296" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                                            <g transform="matrix(1,0,0,1,-1726.68,-957.082)">
+                                                <path d="M1901.08,958.332L1727.93,1131.48L1845.24,1248.79L1899.63,1194.4L1956.08,1250.85L2079.27,1127.66L1901.08,958.332Z" style="fill:none;stroke:white;stroke-width:20px;"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <a class="contact-value contact-link"
+                                        href="https://www.wyzant.com/match/tutor/89117572" target="_blank"
+                                        rel="noopener noreferrer">
+                                        view my profile
+                                    </a>
+                                </div>
+
+                                <button class="copy-button" data-copy="https://www.wyzant.com/match/tutor/89117572"
+                                    aria-label="Copy Wyzant profile link">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <rect x="8" y="8" width="11" height="11" rx="2"></rect>
+                                        <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>
